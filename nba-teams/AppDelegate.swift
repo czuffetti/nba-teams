@@ -14,6 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        WebServices.loadTeamsData { (teams, success) in
+          if success == true {
+            print(teams)
+          }
+        }
         return true
     }
 
