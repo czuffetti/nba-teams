@@ -20,6 +20,7 @@
 		FC0CE453267DC12D00BABBF3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE452267DC12D00BABBF3 /* Constants.swift */; };
 		FC0CE455267DC59D00BABBF3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE454267DC59D00BABBF3 /* Endpoint.swift */; };
 		FC0CE457267DC75800BABBF3 /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE456267DC75800BABBF3 /* WebServices.swift */; };
+		FC0CE45A267DCC3500BABBF3 /* TeamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE459267DCC3500BABBF3 /* TeamsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		FC0CE452267DC12D00BABBF3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FC0CE454267DC59D00BABBF3 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		FC0CE456267DC75800BABBF3 /* WebServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
+		FC0CE459267DCC3500BABBF3 /* TeamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		FC0CE41A267DB7EE00BABBF3 /* nba-teams */ = {
 			isa = PBXGroup;
 			children = (
+				FC0CE458267DCC2200BABBF3 /* Controllers */,
 				FC0CE44B267DBB5400BABBF3 /* Model */,
 				FC0CE41B267DB7EE00BABBF3 /* AppDelegate.swift */,
 				FC0CE41D267DB7EE00BABBF3 /* SceneDelegate.swift */,
@@ -149,6 +152,14 @@
 				FC0CE456267DC75800BABBF3 /* WebServices.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		FC0CE458267DCC2200BABBF3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FC0CE459267DCC3500BABBF3 /* TeamsViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +299,7 @@
 				FC0CE451267DBECC00BABBF3 /* Team.swift in Sources */,
 				FC0CE44D267DBB8100BABBF3 /* Network.swift in Sources */,
 				FC0CE457267DC75800BABBF3 /* WebServices.swift in Sources */,
+				FC0CE45A267DCC3500BABBF3 /* TeamsViewController.swift in Sources */,
 				FC0CE453267DC12D00BABBF3 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

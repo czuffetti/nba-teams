@@ -21,7 +21,9 @@ struct Constants {
       return dateFormatter
     }()
   }
-    
+    //
+    // MARK: - EndpointData
+    //
     struct EndpointData {
         let baseUrl: String = "https://free-nba.p.rapidapi.com/"
         let apiHostKey: String = "x-rapidapi-host"
