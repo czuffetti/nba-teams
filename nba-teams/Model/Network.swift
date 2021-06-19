@@ -15,6 +15,7 @@ class Network {
   // MARK: - Class Methods
   //
   static func loadJSONFile<T: Decodable>(named endpoint: Endpoint?,
+                                         page: Int = 0,
                                          type: T.Type,
                                          queue: DispatchQueue? = DispatchQueue.main,
                                          completionHandler: @escaping (T?, NetworkError?) -> Void) {
@@ -32,7 +33,7 @@ class Network {
     
     let endpointData = Constants.EndpointData()
     
-    guard let url = URL(string: endpointData.baseUrl + urlType.rawValue) else {
+    guard let url = URL(string: endpointData.baseUrl + urlType.rawValue + "?per_page=100&page=\(page)") else {
         completionHandler(nil, .invalidPath)
         return
     }
@@ -59,21 +60,8 @@ class Network {
       do {
         if let jsonData = data {
           let decoder = JSONDecoder()
-          decoder.dateDecodingStrategy = .custom { (decoder) -> Date in
-            let value = try decoder.singleValueContainer().decode(String.self)
-            
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            
-            if let date = formatter.date(from: value) {
-              return date
-            }
-            
-            throw NetworkError.dateParseError
-          }
-          
           let typedObject: T? = try decoder.decode(T.self, from: jsonData)
-          
+        
           if let dispatchQueue = queue {
             dispatchQueue.asyncAfter(deadline: DispatchTime.now()) {
               completionHandler(typedObject, nil)

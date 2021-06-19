@@ -21,6 +21,10 @@
 		FC0CE455267DC59D00BABBF3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE454267DC59D00BABBF3 /* Endpoint.swift */; };
 		FC0CE457267DC75800BABBF3 /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE456267DC75800BABBF3 /* WebServices.swift */; };
 		FC0CE45A267DCC3500BABBF3 /* TeamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE459267DCC3500BABBF3 /* TeamsViewController.swift */; };
+		FC0CE45F267DE6D300BABBF3 /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE45E267DE6D300BABBF3 /* TeamCell.swift */; };
+		FC0CE461267DF97200BABBF3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE460267DF97200BABBF3 /* Player.swift */; };
+		FC0CE463267E39CD00BABBF3 /* PlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE462267E39CD00BABBF3 /* PlayersViewController.swift */; };
+		FC0CE465267E622500BABBF3 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE464267E622500BABBF3 /* PlayerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,10 @@
 		FC0CE454267DC59D00BABBF3 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		FC0CE456267DC75800BABBF3 /* WebServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
 		FC0CE459267DCC3500BABBF3 /* TeamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsViewController.swift; sourceTree = "<group>"; };
+		FC0CE45E267DE6D300BABBF3 /* TeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
+		FC0CE460267DF97200BABBF3 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		FC0CE462267E39CD00BABBF3 /* PlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersViewController.swift; sourceTree = "<group>"; };
+		FC0CE464267E622500BABBF3 /* PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +119,7 @@
 		FC0CE41A267DB7EE00BABBF3 /* nba-teams */ = {
 			isa = PBXGroup;
 			children = (
+				FC0CE45B267DE55D00BABBF3 /* Views */,
 				FC0CE458267DCC2200BABBF3 /* Controllers */,
 				FC0CE44B267DBB5400BABBF3 /* Model */,
 				FC0CE41B267DB7EE00BABBF3 /* AppDelegate.swift */,
@@ -150,6 +159,7 @@
 				FC0CE450267DBECC00BABBF3 /* Team.swift */,
 				FC0CE454267DC59D00BABBF3 /* Endpoint.swift */,
 				FC0CE456267DC75800BABBF3 /* WebServices.swift */,
+				FC0CE460267DF97200BABBF3 /* Player.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -158,8 +168,18 @@
 			isa = PBXGroup;
 			children = (
 				FC0CE459267DCC3500BABBF3 /* TeamsViewController.swift */,
+				FC0CE462267E39CD00BABBF3 /* PlayersViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FC0CE45B267DE55D00BABBF3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FC0CE45E267DE6D300BABBF3 /* TeamCell.swift */,
+				FC0CE464267E622500BABBF3 /* PlayerCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,15 +312,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC0CE461267DF97200BABBF3 /* Player.swift in Sources */,
 				FC0CE455267DC59D00BABBF3 /* Endpoint.swift in Sources */,
 				FC0CE41C267DB7EE00BABBF3 /* AppDelegate.swift in Sources */,
+				FC0CE45F267DE6D300BABBF3 /* TeamCell.swift in Sources */,
 				FC0CE44F267DBBC100BABBF3 /* NetworkError.swift in Sources */,
+				FC0CE463267E39CD00BABBF3 /* PlayersViewController.swift in Sources */,
 				FC0CE41E267DB7EE00BABBF3 /* SceneDelegate.swift in Sources */,
 				FC0CE451267DBECC00BABBF3 /* Team.swift in Sources */,
 				FC0CE44D267DBB8100BABBF3 /* Network.swift in Sources */,
 				FC0CE457267DC75800BABBF3 /* WebServices.swift in Sources */,
 				FC0CE45A267DCC3500BABBF3 /* TeamsViewController.swift in Sources */,
 				FC0CE453267DC12D00BABBF3 /* Constants.swift in Sources */,
+				FC0CE465267E622500BABBF3 /* PlayerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
