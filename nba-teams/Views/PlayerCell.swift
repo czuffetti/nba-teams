@@ -11,6 +11,7 @@ class PlayerCell: UITableViewCell {
     
     let playerName = UILabel()
     let playerPhoto = UIImageView()
+    let arrow = UIImageView()
     let playerPosition = UILabel()
     
         
@@ -25,11 +26,15 @@ class PlayerCell: UITableViewCell {
             playerPosition.font = UIFont.systemFont(ofSize: 14)
             playerPhoto.translatesAutoresizingMaskIntoConstraints = false
             playerPhoto.contentMode = .scaleAspectFit
+            arrow.translatesAutoresizingMaskIntoConstraints = false
+            arrow.contentMode = .scaleAspectFit
+            arrow.image = UIImage(named: "arrow")
             
             // Add the UI components
             contentView.addSubview(playerName)
             contentView.addSubview(playerPosition)
             contentView.addSubview(playerPhoto)
+            contentView.addSubview(arrow)
             
             NSLayoutConstraint.activate([
                 playerPhoto.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
@@ -41,7 +46,11 @@ class PlayerCell: UITableViewCell {
                 playerName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
                 playerPosition.topAnchor.constraint(equalTo: playerName.topAnchor, constant: 30),
                 playerPosition.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-                playerPosition.leadingAnchor.constraint(equalTo: playerPhoto.trailingAnchor, constant: 40)
+                playerPosition.leadingAnchor.constraint(equalTo: playerPhoto.trailingAnchor, constant: 40),
+                arrow.leadingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40),
+                arrow.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+                arrow.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+                arrow.widthAnchor.constraint(equalToConstant: 30)
             ])
         }
         

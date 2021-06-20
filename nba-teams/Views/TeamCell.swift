@@ -11,6 +11,7 @@ class TeamCell: UITableViewCell {
     
     let teamName = UILabel()
     let teamLogo = UIImageView()
+    let arrow = UIImageView()
     let teamDivision = UILabel()
     let teamCity = UILabel()
     let teamConference = UILabel()
@@ -30,6 +31,9 @@ class TeamCell: UITableViewCell {
             teamConference.font = UIFont.systemFont(ofSize: 14)
             teamLogo.translatesAutoresizingMaskIntoConstraints = false
             teamLogo.contentMode = .scaleAspectFit
+            arrow.translatesAutoresizingMaskIntoConstraints = false
+            arrow.contentMode = .scaleAspectFit
+            arrow.image = UIImage(named: "arrow")
             
             // Add the UI components
             contentView.addSubview(teamLogo)
@@ -37,6 +41,7 @@ class TeamCell: UITableViewCell {
             contentView.addSubview(teamDivision)
             contentView.addSubview(teamCity)
             contentView.addSubview(teamConference)
+            contentView.addSubview(arrow)
             
             NSLayoutConstraint.activate([
                 teamLogo.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
@@ -54,7 +59,11 @@ class TeamCell: UITableViewCell {
                 teamDivision.leadingAnchor.constraint(equalTo: teamLogo.trailingAnchor, constant: 40),
                 teamConference.topAnchor.constraint(equalTo: teamDivision.topAnchor, constant: 20),
                 teamConference.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-                teamConference.leadingAnchor.constraint(equalTo: teamLogo.trailingAnchor, constant: 40)
+                teamConference.leadingAnchor.constraint(equalTo: teamLogo.trailingAnchor, constant: 40),
+                arrow.leadingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40),
+                arrow.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+                arrow.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+                arrow.widthAnchor.constraint(equalToConstant: 30)
             ])
         }
         
