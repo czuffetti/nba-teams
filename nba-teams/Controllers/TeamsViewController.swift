@@ -25,16 +25,32 @@ class TeamsViewController: UITableViewController {
       }
     }
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    var searchedTeams: [Datum] = []
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
     override func viewDidLoad() {
         self.title = "Teams"
         spinner.startAnimating()
         tableView.backgroundView = spinner
         tableView.register(TeamCell.self, forCellReuseIdentifier: "TeamCell")
         tableView.rowHeight = 130
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Teams"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
         let ws = WebServices()
         ws.loadTeamsData { (teams, success) in
           if success == true {
             self.teams  = teams
+            guard let t = teams else { return }
+            self.searchedTeams = t.data
+            self.tableView.reloadData()
             self.spinner.stopAnimating()
           }
         }
@@ -50,10 +66,10 @@ class TeamsViewController: UITableViewController {
       segue.identifier == "ShowPlayers",
       let playersViewController = segue.destination as? PlayersViewController,
       let teamCell = sender as? TeamCell,
-      let row = tableView.indexPath(for: teamCell)?.row,
-        let teams = teams
+      let row = tableView.indexPath(for: teamCell)?.row
     {
-        let team = teams.data[row]
+        let teams = searchedTeams
+        let team = teams[row]
       
         let teamId = team.id
         playersViewController.teamId = teamId
@@ -67,19 +83,18 @@ class TeamsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let teamCell = tableView.dequeueReusableCell(withIdentifier: "TeamCell", for: indexPath) as! TeamCell
       
-      if let team = teams?.data[indexPath.row] {
-        teamCell.teamName.text = team.name
-        teamCell.teamDivision.text = "Division: \(team.division)"
-        teamCell.teamCity.text = "City: \(team.city)"
-        teamCell.teamConference.text = "Conference: \(team.conference)"
-        teamCell.teamLogo.image = UIImage(named: team.abbreviation)
-      }
+      let team = searchedTeams[indexPath.row]
+      teamCell.teamName.text = team.name
+      teamCell.teamDivision.text = "Division: \(team.division)"
+      teamCell.teamCity.text = "City: \(team.city)"
+      teamCell.teamConference.text = "Conference: \(team.conference)"
+      teamCell.teamLogo.image = UIImage(named: team.abbreviation)
       
       return teamCell
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return teams?.data.count ?? 0
+      return searchedTeams.count
     }
 
     //
@@ -89,4 +104,23 @@ class TeamsViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "ShowPlayers", sender: tableView.cellForRow(at: indexPath))
     }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        if(isSearchBarEmpty) {
+            guard let t = teams else { return }
+            searchedTeams = t.data
+        } else {
+            guard let filteredTeams = self.teams?.data.filter({$0.name.lowercased().contains(searchText.lowercased())}).map({return $0}) else { return }
+            searchedTeams = filteredTeams
+        }
+        
+        tableView.reloadData()
+    }
+}
+
+extension TeamsViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    let searchBar = searchController.searchBar
+    filterContentForSearchText(searchBar.text!)
+  }
 }

@@ -27,6 +27,11 @@ class PlayersViewController: UITableViewController {
     var teamId: Int?
     var teamName: String = ""
     let spinner = UIActivityIndicatorView(style: .large)
+    var searchedPlayers: [DatumPlayer] = []
+    let searchController = UISearchController(searchResultsController: nil)
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
     
     
     override func viewDidLoad() {
@@ -35,6 +40,11 @@ class PlayersViewController: UITableViewController {
         tableView.backgroundView = spinner
         tableView.register(PlayerCell.self, forCellReuseIdentifier: "PlayerCell")
         tableView.rowHeight = 130
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Players"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
         if (CachedPlayers == nil) {
             loadPlayersData()
         } else {
@@ -43,6 +53,8 @@ class PlayersViewController: UITableViewController {
             let tempPlayers = Players(data: filteredPlayers, meta: meta)
             self.players = nil
             self.players = tempPlayers
+            self.searchedPlayers = tempPlayers.data
+            self.tableView.reloadData()
         }
     }
     
@@ -60,7 +72,9 @@ class PlayersViewController: UITableViewController {
                 let tempPlayers = Players(data: filteredPlayers, meta: meta)
                 self.players = tempPlayers
                 CachedPlayers = Players(data: self.allPlayers, meta: meta)
+                self.searchedPlayers = tempPlayers.data
                 self.spinner.stopAnimating()
+                self.tableView.reloadData()
             }
         }
     }
@@ -92,19 +106,18 @@ class PlayersViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let playerCell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell", for: indexPath) as! PlayerCell
         
-      if let player = players?.data[indexPath.row] {
+        let player = searchedPlayers[indexPath.row]
         playerCell.playerName.text = player.firstName + " " + player.lastName
         var position = player.position.rawValue
         if position.isEmpty { position = "N/A" }
         playerCell.playerPosition.text = "Position: " + position
         playerCell.playerPhoto.image = UIImage(named: "player-icon")
-      }
       
       return playerCell
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.players?.data.count ?? 0
+        return self.searchedPlayers.count
     }
 
     //
@@ -114,4 +127,23 @@ class PlayersViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "ShowPlayer", sender: tableView.cellForRow(at: indexPath))
     }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        if(isSearchBarEmpty) {
+            guard let p = players else { return }
+            searchedPlayers = p.data
+        } else {
+            guard let filteredPlayers = self.players?.data.filter({$0.firstName.lowercased().contains(searchText.lowercased()) || $0.lastName.lowercased().contains(searchText.lowercased())}).map({return $0}) else { return }
+            searchedPlayers = filteredPlayers
+        }
+        
+        tableView.reloadData()
+    }
+}
+
+extension PlayersViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    let searchBar = searchController.searchBar
+    filterContentForSearchText(searchBar.text!)
+  }
 }
