@@ -18,4 +18,5 @@ enum NetworkError: Error {
   case invalidPath
   case parseError
   case requestError
+  case networkError
 }

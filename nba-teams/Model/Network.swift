@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 //
 // MARK: - Network
@@ -14,6 +15,7 @@ class Network {
   //
   // MARK: - Class Methods
   //
+    
   static func loadJSONFile<T: Decodable>(named endpoint: Endpoint?,
                                          page: Int = 1,
                                          type: T.Type,
@@ -45,6 +47,10 @@ class Network {
     let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
       let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 200
       
+        if(error != nil) {
+            completionHandler(nil, .networkError)
+        }
+        
       if statusCode != 200 {
         if let dispatchQueue = queue {
           dispatchQueue.asyncAfter(deadline: DispatchTime.now()) {

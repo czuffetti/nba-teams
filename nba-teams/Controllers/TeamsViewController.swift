@@ -52,6 +52,8 @@ class TeamsViewController: UITableViewController {
             self.searchedTeams = t.data
             self.tableView.reloadData()
             self.spinner.stopAnimating()
+          } else {
+            self.displayError()
           }
         }
     }
@@ -59,6 +61,16 @@ class TeamsViewController: UITableViewController {
   //
   // MARK: - View Controller
   //
+    
+    private func displayError() {
+        DispatchQueue.main.async {
+            self.spinner.stopAnimating()
+            let alert = UIAlertController(title: "Error", message: "Network connection is required", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            }
+    }
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     super.prepare(for: segue, sender: sender)
     
