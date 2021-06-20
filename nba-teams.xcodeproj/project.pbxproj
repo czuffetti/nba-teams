@@ -25,6 +25,7 @@
 		FC0CE461267DF97200BABBF3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE460267DF97200BABBF3 /* Player.swift */; };
 		FC0CE463267E39CD00BABBF3 /* PlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE462267E39CD00BABBF3 /* PlayersViewController.swift */; };
 		FC0CE465267E622500BABBF3 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE464267E622500BABBF3 /* PlayerCell.swift */; };
+		FC0CE467267F2DEB00BABBF3 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CE466267F2DEB00BABBF3 /* PlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		FC0CE460267DF97200BABBF3 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		FC0CE462267E39CD00BABBF3 /* PlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersViewController.swift; sourceTree = "<group>"; };
 		FC0CE464267E622500BABBF3 /* PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
+		FC0CE466267F2DEB00BABBF3 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 			children = (
 				FC0CE459267DCC3500BABBF3 /* TeamsViewController.swift */,
 				FC0CE462267E39CD00BABBF3 /* PlayersViewController.swift */,
+				FC0CE466267F2DEB00BABBF3 /* PlayerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				FC0CE461267DF97200BABBF3 /* Player.swift in Sources */,
 				FC0CE455267DC59D00BABBF3 /* Endpoint.swift in Sources */,
 				FC0CE41C267DB7EE00BABBF3 /* AppDelegate.swift in Sources */,
+				FC0CE467267F2DEB00BABBF3 /* PlayerViewController.swift in Sources */,
 				FC0CE45F267DE6D300BABBF3 /* TeamCell.swift in Sources */,
 				FC0CE44F267DBBC100BABBF3 /* NetworkError.swift in Sources */,
 				FC0CE463267E39CD00BABBF3 /* PlayersViewController.swift in Sources */,

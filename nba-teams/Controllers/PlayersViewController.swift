@@ -85,19 +85,16 @@ class PlayersViewController: UITableViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     super.prepare(for: segue, sender: sender)
     
-    /*if
-      segue.identifier == "ShowAttendeeDetails",
-      let detailViewController = segue.destination as? DetailViewController,
-      let attendeeCell = sender as? UITableViewCell,
-      let row = tableView.indexPath(for: attendeeCell)?.row,
-      let teams = teams
+    if
+      segue.identifier == "ShowPlayer",
+      let playerViewController = segue.destination as? PlayerViewController,
+      let playerCell = sender as? PlayerCell,
+      let row = tableView.indexPath(for: playerCell)?.row
     {
-        let team = teams.data[row]
-      
-        var detailsString = team.fullName
-      
-      detailViewController.details = detailsString
-    }*/
+        let players = searchedPlayers
+        let player = players[row]
+        playerViewController.player = player
+    }
   }
     
     //
