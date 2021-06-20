@@ -24,7 +24,7 @@ class WebServices {
     
     var allPlayers: [DatumPlayer] = []
     var meta: Meta?
-    var page: Int = 0
+    var page: Int = 1
     
     func loadPlayersData(completionHandler: @escaping (Players?, Bool?, Bool?) -> Void) {
         //loadsPlayers()

@@ -15,7 +15,7 @@ class Network {
   // MARK: - Class Methods
   //
   static func loadJSONFile<T: Decodable>(named endpoint: Endpoint?,
-                                         page: Int = 0,
+                                         page: Int = 1,
                                          type: T.Type,
                                          queue: DispatchQueue? = DispatchQueue.main,
                                          completionHandler: @escaping (T?, NetworkError?) -> Void) {

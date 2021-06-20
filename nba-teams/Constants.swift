@@ -10,6 +10,9 @@ import Foundation
 //
 // MARK: - Constants
 //
+
+var CachedPlayers: Players?
+
 struct Constants {
   //
   // MARK: - Date Formatters

@@ -38,7 +38,7 @@ class PlayerCell: UITableViewCell {
                 playerPhoto.widthAnchor.constraint(equalToConstant: 50),
                 playerName.leadingAnchor.constraint(equalTo: playerPhoto.trailingAnchor, constant: 40),
                 playerName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-                playerName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+                playerName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
                 playerPosition.topAnchor.constraint(equalTo: playerName.topAnchor, constant: 30),
                 playerPosition.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
                 playerPosition.leadingAnchor.constraint(equalTo: playerPhoto.trailingAnchor, constant: 40)

@@ -35,7 +35,15 @@ class PlayersViewController: UITableViewController {
         tableView.backgroundView = spinner
         tableView.register(PlayerCell.self, forCellReuseIdentifier: "PlayerCell")
         tableView.rowHeight = 130
-        loadPlayersData()
+        if (CachedPlayers == nil) {
+            loadPlayersData()
+        } else {
+            guard let filteredPlayers = CachedPlayers?.data.filter({$0.team.id == self.teamId}).map({return $0}) else { return }
+            guard let meta = CachedPlayers?.meta else { return }
+            let tempPlayers = Players(data: filteredPlayers, meta: meta)
+            self.players = nil
+            self.players = tempPlayers
+        }
     }
     
     private func loadPlayersData() {
@@ -51,6 +59,7 @@ class PlayersViewController: UITableViewController {
                 let filteredPlayers = self.allPlayers.filter({$0.team.id == self.teamId}).map({return $0})
                 let tempPlayers = Players(data: filteredPlayers, meta: meta)
                 self.players = tempPlayers
+                CachedPlayers = Players(data: self.allPlayers, meta: meta)
                 self.spinner.stopAnimating()
             }
         }
@@ -88,6 +97,7 @@ class PlayersViewController: UITableViewController {
         var position = player.position.rawValue
         if position.isEmpty { position = "N/A" }
         playerCell.playerPosition.text = "Position: " + position
+        playerCell.playerPhoto.image = UIImage(named: "player-icon")
       }
       
       return playerCell
@@ -101,6 +111,7 @@ class PlayersViewController: UITableViewController {
     // MARK: - Table View Delegate
     //
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.performSegue(withIdentifier: "ShowPlayer", sender: tableView.cellForRow(at: indexPath))
     }
 }

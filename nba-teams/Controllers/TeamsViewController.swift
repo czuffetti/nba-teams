@@ -72,9 +72,7 @@ class TeamsViewController: UITableViewController {
         teamCell.teamDivision.text = "Division: \(team.division)"
         teamCell.teamCity.text = "City: \(team.city)"
         teamCell.teamConference.text = "Conference: \(team.conference)"
-        //teamCell.detailTextLabel?.text = "\(team.division)"
         teamCell.teamLogo.image = UIImage(named: team.abbreviation)
-        //teamCell.imageView?.image = UIImage(named: team.abbreviation)
       }
       
       return teamCell
@@ -88,7 +86,7 @@ class TeamsViewController: UITableViewController {
     // MARK: - Table View Delegate
     //
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "ShowPlayers", sender: tableView.cellForRow(at: indexPath))
     }
 }
